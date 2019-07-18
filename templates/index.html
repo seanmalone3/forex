@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+    <head bgcolor="#e3eeff">
+            <h1>FOREX Currency Conversion Project</h1> 
+            <p>by <a href="https://seanmalone.dev">Sean Malone</a></p>
+            <br>
+            <!--<a href="charts.html">Click Here for Charts</a>-->
+    </head>
+    <body bgcolor="#e3eeff">
+        <form action='/' method='post'>
+            Convert <input placeholder={{cur}} maxlength="3" size="10" name='cur'></input> to 
+            <input placeholder={{base}} maxlength="3 " size="10" name='base'></input>
+            <input type='submit' name='currencies' value='Submit'></input>
+            &nbsp;&nbsp;&nbsp;Valid Currency List: 
+            <select> 
+                {% for each in currency_list %}
+                    <option value="{{each}}">{{each}}</option>
+                {% endfor %}
+            </select>
+            <font color="red">
+                    {% if fmsg is not none %}
+                        {{ fmsg }}
+                    {% endif %}
+            </font>
+        </form><br>
+        <form action='/' method='post'>
+            Dates &nbsp;&nbsp;&nbsp;<input placeholder={{start_date}} size="10" name='start_date'></input> to 
+            <input placeholder={{end_date}} size="10" name='end_date'></input>
+            <input type='submit' name='dates' value='Submit'></input>
+            <font color="red">
+                    {% if dmsg is not none %}
+                        {{ dmsg }}
+                    {% endif %}
+            </font>
+        </form>
+        <br>
+        <img src="data:image/png;base64, {{ plot_url }}">
+
+        <!-- <div>
+            {% for table in tables %}
+                        {{titles[loop.index]}}
+                        {{ table|safe }}
+            {% endfor %}
+        </div> -->
+
+    </body>
+</html>

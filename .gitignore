@@ -1,0 +1,7 @@
+.ipynb_checkpoints
+.vscode
+*.csv
+*.ipynb
+myenv/
+__pycache__
+templates/charts.html
