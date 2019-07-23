@@ -5,3 +5,7 @@
 myenv/
 __pycache__
 templates/charts.html
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml

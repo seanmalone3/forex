@@ -11,12 +11,8 @@
             Convert <input placeholder={{cur}} maxlength="3" size="10" name='cur'></input> to 
             <input placeholder={{base}} maxlength="3 " size="10" name='base'></input>
             <input type='submit' name='currencies' value='Submit'></input>
-            &nbsp;&nbsp;&nbsp;Valid Currency List: 
-            <select> 
-                {% for each in currency_list %}
-                    <option value="{{each}}">{{each}}</option>
-                {% endfor %}
-            </select>
+            <input type='submit' name='reverse' value='Reverse'></input>
+            &nbsp;Current Price: <strong>{{current_price}}</strong>
             <font color="red">
                     {% if fmsg is not none %}
                         {{ fmsg }}
@@ -27,6 +23,12 @@
             Dates &nbsp;&nbsp;&nbsp;<input placeholder={{start_date}} size="10" name='start_date'></input> to 
             <input placeholder={{end_date}} size="10" name='end_date'></input>
             <input type='submit' name='dates' value='Submit'></input>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Valid Currency List: 
+            <select> 
+                {% for each in currency_list %}
+                    <option value="{{each}}">{{each}}</option>
+                {% endfor %}
+            </select>
             <font color="red">
                     {% if dmsg is not none %}
                         {{ dmsg }}

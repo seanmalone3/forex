@@ -80,9 +80,13 @@ def index():
         #return redirect("/?start_date={sd}&end_date={ed}&base={base}&cur={cur}&dmsg={dmsg}&fmsg={fmsg}".format(sd=start_date,ed=end_date,base=base,cur=cur,dmsg=dmsg,fmsg=fmsg))
         return redirect("/?start_date={sd}&end_date={ed}&base={base}&cur={cur}".format(sd=start_date,ed=end_date,base=base,cur=cur))
     
+    if request.form.get("reverse") == "Reverse":
+        cur, base, fmsg = cur_func(base, cur)
+        #return redirect("/?start_date={sd}&end_date={ed}&base={base}&cur={cur}&dmsg={dmsg}&fmsg={fmsg}".format(sd=start_date,ed=end_date,base=base,cur=cur,dmsg=dmsg,fmsg=fmsg))
+        return redirect("/?start_date={sd}&end_date={ed}&base={base}&cur={cur}".format(sd=start_date,ed=end_date,base=base,cur=cur))
 
     plot_url = make_plot(df, cur, base)
-    return render_template('index.html', plot_url=plot_url, start_date=start_date, end_date=end_date, base=base, cur=cur, currency_list=currency_list) #, dmsg=dmsg,fmsg=fmsg)
+    return render_template('index.html', plot_url=plot_url, start_date=start_date, end_date=end_date, base=base, cur=cur, current_price = get_latest(base,cur), currency_list=currency_list_long) #, dmsg=dmsg,fmsg=fmsg)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80)
