@@ -283,13 +283,16 @@ def get_latest(base,cur):
     fixer_latest = 'https://api.exchangeratesapi.io/latest'
     # if cur.upper() in short_list: 
     if all(x in currency_list for x in [base, cur]):
-        resp = requests.get(fixer_latest)
-        out = json.loads(resp.text)
-        data = out['rates']
-        data['EUR'] = 1/data['USD']
-        return round(data[cur]/data[base],5)
+        try:
+            resp = requests.get(fixer_latest)
+            out = json.loads(resp.text)
+            data = out['rates']
+            data['EUR'] = 1/data['USD']
+            return round(data[cur]/data[base],5)
+        except:
+            return "Instant price not available."
     else:
-        return "Instant Currency not available yet"
+        return "Instant price not available."
 
 currency_list_long = ['AED : United Arab Emirates Dirham',
 'AFN : Afghan Afghani',
