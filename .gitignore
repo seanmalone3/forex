@@ -1,10 +1,12 @@
 .ipynb_checkpoints
 .vscode
+.idea
 *.csv
 *.ipynb
 myenv/
 __pycache__
 templates/charts.html
+database_old.db
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
