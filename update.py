@@ -31,14 +31,20 @@ def get_today():
 
 def update_database(df):
     con = sqlite3.connect('database.db', timeout=10)
-    df.to_sql('forex', con, if_exists='append', index=False)
+    db = pd.read_sql('select max(date) as max_date from forex', con)
+    now_date = df['Date'][0]
+    max_date = pd.to_datetime(db.max_date[0], infer_datetime_format=True)
+    if (now_date - max_date).days == 1:
+        df.to_sql('forex', con, if_exists='append', index=False)
+    else:
+        raise ValueError('Dates are not one day apart')
 
 try:
     today_df = get_today()
 except:
-    quit()
+    raise ValueError('Could not get todays data')
 
 try:
     update_database(today_df)
 except:
-    quit()
+    raise ValueError('Could not update database')
